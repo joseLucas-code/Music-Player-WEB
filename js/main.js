@@ -8,24 +8,20 @@ const muteBTN = document.querySelector('.fa-volume-mute')
 const volumeBTN = document.querySelector('.fa-volume-up')
 const volumeRange = document.querySelector('.volume-range')
 const sidebarMusic = document.querySelector('.sidebar-music');
-
+const musicBoxContainer = document.querySelector('.music-box-container');
+const songTime = document.querySelector('song-time')
+const songDuration = document.querySelector('.duration-range')
 const openMusicList = document.querySelector('.nav-player i.fa-bars')
 const closeMusicList = document.querySelector('.sidebar-music i.fa-times')
 
-openMusicList.addEventListener('click', ()=>{
-    sidebarMusic.classList.add('OpenSidebar')
-})
 
-closeMusicList.addEventListener('click', ()=>{
-    sidebarMusic.classList.remove('OpenSidebar')
-})
-
-let timer;
+let duration = 0;
+let currentTime = 0;
 let autoplay = 0;
 let songIndex = 0;
-let playingSong = false;
-let hasMuted = false
-let audioEl = document.createElement('audio')
+let isPlaying = false;
+let isMuted = false
+let audioEl = new Audio()
 playerContainer.appendChild(audioEl)
 let allSongs = [
     {
@@ -48,41 +44,24 @@ let allSongs = [
         thumb: 'img/artist4.jpg',
         source: 'songs/audio4.mp3'
     },
+    {
+        name: 'Fiveth song',
+        thumb: 'img/artist5.jpg',
+        source: 'songs/audio5.mp3'
+    }
 ];
 let totalSongs = allSongs.length - 1;
 
 
-
-function loadSong(){
-    
-    audioEl.src = allSongs[songIndex].source
-    songTittle.innerHTML = allSongs[songIndex].name
-    artistiIMG.src = allSongs[songIndex].thumb
-}
-
-function playSong(){
-    let playAudio = audioEl.play()
-    audioEl.autoplay = true
-    playingSong = true;
-    playBTN.classList.add('pauseIcon')
-}
-
-function pauseSong(){
-    let pauseAudio = audioEl.pause()
-    playingSong = false;
-    audioEl.autoplay = false
-    playBTN.classList.remove('pauseIcon')
-}
-
 muteBTN.addEventListener('click', ()=>{
-    if(hasMuted === false){
+    if(isMuted === false){
         audioEl.muted = true
         muteBTN.style.backgroundColor = '#E06F26';
-        hasMuted = true
+        isMuted = true
     }else{
         audioEl.muted = false
         muteBTN.style.backgroundColor = '#495D69';
-        hasMuted = false
+        isMuted = false
     }
 })
 
@@ -92,39 +71,6 @@ volumeBTN.addEventListener('click', ()=>{
     volumeBTN.classList.toggle('volumeUpOpen')
     volumeMenu.classList.toggle('openVolumeMenu')
 
-})
-
-nextBTN.addEventListener('click', ()=>{
-    
-    if(songIndex === totalSongs){
-        songIndex = 0;
-        loadSong();
-        playSong();
-    }else{
-        songIndex++
-        loadSong()
-        playSong()
-    }
-})
-
-prevBTN.addEventListener('click', ()=>{
-    if(songIndex === 0){
-        songIndex = totalSongs;
-        loadSong();
-        playSong();
-    }else{
-        songIndex--
-        loadSong()
-        playSong()
-    }
-})
-
-playBTN.addEventListener('click', ()=>{
-    if(playingSong === true){
-        pauseSong()
-    }else{
-        playSong()
-    }
 })
 
 volumeRange.addEventListener('input', ()=>{
@@ -151,7 +97,7 @@ function createSidebarElements(){
         artistText.classList.add('artist-text')
         iconPlay.classList.add('fas','fa-play')
 
-        sidebarMusic.appendChild(musicBox)
+        musicBoxContainer.appendChild(musicBox)
         musicBox.appendChild(artistContent)
         artistContent.appendChild(artistiImage)
         artistiImage.src = allSongs[i].thumb
@@ -168,14 +114,109 @@ function createSidebarElements(){
 
             loadSong()
             playSong()
+
+            changeActiveBox()
         })
 
+        
     }
+
+    musicBoxContainer.children[0].classList.add('activeBox')
+
+}
+
+openMusicList.addEventListener('click', ()=>{
+    sidebarMusic.classList.add('OpenSidebar')
+})
+
+closeMusicList.addEventListener('click', ()=>{
+    sidebarMusic.classList.remove('OpenSidebar')
+})
+
+
+songDuration.addEventListener('input', ()=>{
+    audioEl.currentTime = songDuration.value;
+})
+
+audioEl.addEventListener("timeupdate", ()=>{
+    songDuration.value = audioEl.currentTime
+    duration = audioEl.duration
+    songDuration.max = duration
+})
+
+audioEl.addEventListener('ended', nextSong)
+
+prevBTN.addEventListener('click', ()=>{
+    if(songIndex === 0){
+        songIndex = totalSongs;
+        loadSong();
+        playSong();
+    }else{
+        songIndex--
+        loadSong()
+        playSong()
+    }
+
+    changeActiveBox()
+})
+
+playBTN.addEventListener('click', ()=>{
+    if(isPlaying === true){
+        pauseSong()
+    }else{
+        playSong()
+    }
+})
+
+nextBTN.addEventListener('click', nextSong)
+function nextSong(){
+    
+    if(songIndex === totalSongs){
+        songIndex = 0;
+        loadSong();
+        playSong();
+    }else{
+        songIndex++
+        loadSong()
+        playSong()
+    }
+
+    changeActiveBox()
+}
+
+function pauseSong(){
+    audioEl.pause()
+    isPlaying = false;
+    audioEl.autoplay = false
+    playBTN.classList.remove('pauseIcon')
+}
+
+function playSong(){
+    audioEl.play()
+    audioEl.autoplay = true
+    isPlaying = true;
+    playBTN.classList.add('pauseIcon')
+}
+
+function loadSong(){
+    
+    audioEl.src = allSongs[songIndex].source
+    audioEl.setAttribute('preload', 'metadata')
+    songTittle.innerHTML = allSongs[songIndex].name
+    artistiIMG.src = allSongs[songIndex].thumb
+}
+
+function changeActiveBox(){
+    let musicBoxSingle = document.querySelector('.music-box.activeBox');
+    musicBoxSingle.classList.remove('activeBox')
+
+    musicBoxContainer.children[songIndex].classList.add('activeBox')
 }
 
 function init(){
     loadSong()
     createSidebarElements()
+    
 }
 
 init()
