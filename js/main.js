@@ -127,7 +127,7 @@ playBTN.addEventListener('click', ()=>{
     }
 })
 
-volumeRange.addEventListener('change', ()=>{
+volumeRange.addEventListener('input', ()=>{
     const volumeSpan = document.querySelector('.volume-menu span')
 
     audioEl.volume = (volumeRange.value / 100)
