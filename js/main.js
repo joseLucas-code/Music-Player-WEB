@@ -4,11 +4,15 @@ const songTittle = document.querySelector('.album-content h2')
 const prevBTN = document.querySelector('.fa-step-backward')
 const playBTN = document.querySelector('.fa-play')
 const nextBTN = document.querySelector('.fa-step-forward')
+const muteBTN = document.querySelector('.fa-volume-mute')
+const volumeBTN = document.querySelector('.fa-volume-up')
+const volumeRange = document.querySelector('.volume-range')
 
 let timer;
 let autoplay = 0;
 let songIndex = 0;
 let playingSong = false;
+let hasMuted = false
 let audioEl = document.createElement('audio')
 playerContainer.appendChild(audioEl)
 let allSongs = [
@@ -33,11 +37,11 @@ let allSongs = [
         source: 'songs/audio4.mp3'
     },
 ];
-
 let totalSongs = allSongs.length - 1;
 
+
 function loadSong(){
-    audioEl.volume = 0.5
+    
     audioEl.src = allSongs[songIndex].source
     songTittle.innerHTML = allSongs[songIndex].name
     artistiIMG.src = allSongs[songIndex].thumb
@@ -56,7 +60,25 @@ function pauseSong(){
     playBTN.classList.remove('pauseIcon')
 }
 
+muteBTN.addEventListener('click', ()=>{
+    if(hasMuted === false){
+        audioEl.muted = true
+        muteBTN.style.backgroundColor = '#E06F26';
+        hasMuted = true
+    }else{
+        audioEl.muted = false
+        muteBTN.style.backgroundColor = '#495D69';
+        hasMuted = false
+    }
+})
 
+volumeBTN.addEventListener('click', ()=>{
+    const volumeMenu = document.querySelector('.volume-menu')
+
+    volumeBTN.classList.toggle('volumeUpOpen')
+    volumeMenu.classList.toggle('openVolumeMenu')
+
+})
 
 nextBTN.addEventListener('click', ()=>{
     
@@ -89,6 +111,13 @@ playBTN.addEventListener('click', ()=>{
     }else{
         playSong()
     }
+})
+
+volumeRange.addEventListener('change', ()=>{
+    const volumeSpan = document.querySelector('.volume-menu span')
+
+    audioEl.volume = (volumeRange.value / 100)
+    volumeSpan.innerHTML = `${volumeRange.value}%`
 })
 
 function init(){

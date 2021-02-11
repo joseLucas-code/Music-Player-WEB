@@ -18,7 +18,14 @@
     <main>
         <section class="player-container">
             <nav class="nav-player">
-                <i class="fas fa-chevron-right"></i>
+                <div class="menu-controls">
+                    <i class="fas fa-volume-mute"></i>
+                    <i class="fas fa-volume-up"></i>
+                    <div class="volume-menu">
+                        <span class="volume-percent">20%</span>
+                        <input type="range" min="0" max="100" value="30" class="volume-range">
+                    </div><!--## VOLUME MENU ##-->
+                </div><!--## MENU CONTROLS ##-->
                 <i class="fas fa-bars"></i>
             </nav><!--## NAV PLAYER ##-->
 
@@ -39,6 +46,8 @@
                     <i class="fas fa-step-backward"></i>
                     <i class="fas fa-play"></i>
                     <i class="fas fa-step-forward"></i>
+
+                    
                 </div><!--## SONG NAVIGATION ##-->
             </div><!--## PLAYER CONTROLS ##-->
 
