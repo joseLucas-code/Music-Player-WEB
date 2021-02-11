@@ -45,13 +45,13 @@ function loadSong(){
 }
 
 function playSong(){
-    audioEl.play()
+    let playAudio = audioEl.play()
     playingSong = true;
     playBTN.classList.add('pauseIcon')
 }
 
 function pauseSong(){
-    audioEl.pause()
+    let pauseAudio = audioEl.pause()
     playingSong = false;
     playBTN.classList.remove('pauseIcon')
 }
