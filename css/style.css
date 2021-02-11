@@ -134,6 +134,7 @@ body{
 }
 
 .volume-menu span {
+    display: inline-block;
     width: 38px;
 }
 
