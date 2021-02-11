@@ -163,6 +163,7 @@ function createSidebarElements(){
         musicBox.appendChild(iconPlay)
 
         iconPlay.addEventListener('click', ()=>{
+            i = parseInt(i)
             songIndex = i
 
             loadSong()
