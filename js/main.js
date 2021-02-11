@@ -10,6 +10,7 @@ let autoplay = 0;
 let songIndex = 0;
 let playingSong = false;
 let audioEl = document.createElement('audio')
+playerContainer.appendChild(audioEl)
 let allSongs = [
     {
         name: 'First song',
@@ -36,34 +37,62 @@ let allSongs = [
 let totalSongs = allSongs.length - 1;
 
 function loadSong(){
-    playerContainer.appendChild(audioEl)
     audioEl.volume = 0.5
     audioEl.src = allSongs[songIndex].source
     songTittle.innerHTML = allSongs[songIndex].name
     artistiIMG.src = allSongs[songIndex].thumb
+    
 }
 
-playBTN.addEventListener('click', ()=>{
-    if(playingSong === false){
-        audioEl.play()
-        playingSong = true
+function playSong(){
+    audioEl.play()
+    playingSong = true;
+    playBTN.classList.add('pauseIcon')
+}
+
+function pauseSong(){
+    audioEl.pause()
+    playingSong = false;
+    playBTN.classList.remove('pauseIcon')
+}
+
+
+
+nextBTN.addEventListener('click', ()=>{
+    
+    if(songIndex === totalSongs){
+        songIndex = 0;
+        loadSong();
+        playSong();
     }else{
-        audioEl.pause()
-        playingSong = false
+        songIndex++
+        loadSong()
+        playSong()
     }
 })
 
-nextBTN.addEventListener('click', ()=>{
-    songIndex === totalSongs ? songIndex = 0 : songIndex++
-
-    audioEl.autoplay
-    loadSong()
-})
-
 prevBTN.addEventListener('click', ()=>{
-    songIndex === 0 ? songIndex = totalSongs : songIndex--
-
-    loadSong()
+    if(songIndex === 0){
+        songIndex = totalSongs;
+        loadSong();
+        playSong();
+    }else{
+        songIndex--
+        loadSong()
+        playSong()
+    }
 })
 
-loadSong()
+playBTN.addEventListener('click', ()=>{
+    if(playingSong === true){
+        pauseSong()
+    }else{
+        playSong()
+    }
+})
+
+function init(){
+    loadSong()
+}
+
+init()

@@ -98,4 +98,9 @@ body{
 
 .song-navigation i.fa-play{
     background: #E06F26;
+    transition: content 1s ease;
+}
+
+.song-navigation i.fa-play.pauseIcon::before{
+    content: '\f04c'
 }
