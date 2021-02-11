@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <title>Music Player</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="lucas">
+    <meta name="description" content="pojeto pratico">
+    <meta name="keywords" content="projete,pratico,iniciante,html,css,js">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    
+    <main>
+        <section class="player-container">
+            <nav class="nav-player">
+                <i class="fas fa-chevron-right"></i>
+                <i class="fas fa-bars"></i>
+            </nav><!--## NAV PLAYER ##-->
+
+            <div class="album-content">
+                <img src="img/artist1.jpg">
+
+                <h2>Song Tittle</h2>
+                <p>Artist name</p>
+            </div><!--## ALBUM IMAGE-->
+
+            <div class="player-controls">
+                <div class="song-duration">
+                    <input type="range" value="0" min="0" max="100" class="duration-range">
+                    <span class="song-time">3:00</span>
+                </div><!--## SONG DURATION ##-->
+
+                <div class="song-navigation">
+                    <i class="fas fa-step-backward"></i>
+                    <i class="fas fa-play"></i>
+                    <i class="fas fa-step-forward"></i>
+                </div><!--## SONG NAVIGATION ##-->
+            </div><!--## PLAYER CONTROLS ##-->
+
+            
+        </section><!--## PLAYER CONTAINER ##-->
+    </main>
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/js/fontawesome.min.js"></script>
+    <script src="js/fontawesome.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
