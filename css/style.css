@@ -217,6 +217,7 @@ body{
     border-radius: 10px;
     object-fit: fill;
     box-shadow: 4px 3px 3px rgba(255, 255, 255,0.1);
+    margin-bottom: 10px;
 }
 
 .player-controls{
