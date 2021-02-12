@@ -133,6 +133,21 @@ body{
     text-align: right;
     display: none;
     overflow: auto;
+    scrollbar-color: #A826F8 #020C10;
+    scrollbar-width: 5;
+}
+
+.sidebar-music::-webkit-scrollbar{
+    appearance: none;
+    -webkit-appearance: none;
+    width:5px;
+    border: 2px solid #020C10;
+    border-radius: 10px;
+}
+
+.sidebar-music::-webkit-scrollbar-thumb{
+    background: #A826F8;
+    border-radius: 10px;
 }
 
 .sidebar-music.OpenSidebar{
