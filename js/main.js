@@ -61,11 +61,11 @@ let totalSongs = allSongs.length - 1;
 muteBTN.addEventListener('click', ()=>{
     if(isMuted === false){
         audioEl.muted = true
-        muteBTN.style.backgroundColor = '#E06F26';
+        muteBTN.style.backgroundColor = '#430000';
         isMuted = true
     }else{
         audioEl.muted = false
-        muteBTN.style.backgroundColor = '#495D69';
+        muteBTN.style.backgroundColor = '#030D13';
         isMuted = false
     }
 })
