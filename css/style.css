@@ -211,11 +211,12 @@ body{
 }
 
 .album-content img{
-    width: 180px;
-    height: 180px;
+    width: 300px;
+    height: 250px;
     max-width: 100%;
-    border-radius: 50%;
-    object-fit: center;
+    border-radius: 10px;
+    object-fit: fill;
+    box-shadow: 4px 3px 3px rgba(255, 255, 255,0.1);
 }
 
 .player-controls{
