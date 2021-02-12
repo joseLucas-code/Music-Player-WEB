@@ -22,7 +22,6 @@ let songIndex = 0;
 let isPlaying = false;
 let isMuted = false
 let audioEl = new Audio()
-let currentVolume = (volumeRange.value / 100)
 playerContainer.appendChild(audioEl)
 let allSongs = [
     {
@@ -205,6 +204,7 @@ function playSong(){
 }
 
 function loadSong(){
+    let currentVolume = (volumeRange.value / 100)
     
     audioEl.src = allSongs[songIndex].source
     audioEl.setAttribute('preload', 'metadata')
