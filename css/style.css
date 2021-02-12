@@ -159,11 +159,11 @@ body{
 }
 
 .sidebar-music .music-box{
-    width: 280px;
+    width: 300px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px;
+    padding: 5px;
     border-bottom: 1px solid rgba(0,0,0,.3);
     margin: 10px auto 0 auto;
     border-radius: 5px;
@@ -185,9 +185,13 @@ body{
 }
 
 .artist-text{
-    text-align: center;
+    text-align: left;
     margin-left: 10px;
     color: white;
+}
+
+.artist-text h1 {
+    font-size: 16px;
 }
 
 .artist-text h1,

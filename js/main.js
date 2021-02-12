@@ -1,6 +1,7 @@
 const playerContainer = document.querySelector('.player-container')
 const artistiIMG = document.querySelector('.album-content img')
 const songTittle = document.querySelector('.album-content h2')
+const artistName = document.querySelector('.album-content p')
 const prevBTN = document.querySelector('.fa-step-backward')
 const playBTN = document.querySelector('.fa-play')
 const nextBTN = document.querySelector('.fa-step-forward')
@@ -17,35 +18,40 @@ const closeMusicList = document.querySelector('.sidebar-music i.fa-times')
 
 let duration = 0;
 let currentTime = 0;
-let autoplay = 0;
 let songIndex = 0;
 let isPlaying = false;
 let isMuted = false
 let audioEl = new Audio()
+let currentVolume = (volumeRange.value / 100)
 playerContainer.appendChild(audioEl)
 let allSongs = [
     {
-        name: 'First song',
+        name: 'C U Again',
+        artist: 'Cartoon',
         thumb: 'img/artist1.jpg',
         source: 'songs/audio1.mp3'
     },
     {
-        name: 'Second Song',
+        name: 'Howling',
+        artist: 'Cartoon',
         thumb: 'img/artist2.jpg',
         source: 'songs/audio2.mp3'
     },
     {
-        name: 'Third song',
+        name: 'On & On',
+        artist: 'Cartoon',
         thumb: 'img/artist3.jpg',
         source: 'songs/audio3.mp3'
     },
     {
-        name: 'Fourth song',
+        name: 'Filthy Rich (Sweater Remix)',
+        artist: 'Evalyn',
         thumb: 'img/artist4.jpg',
         source: 'songs/audio4.mp3'
     },
     {
-        name: 'Fiveth song',
+        name: 'Dead of Night',
+        artist: 'If Found',
         thumb: 'img/artist5.jpg',
         source: 'songs/audio5.mp3'
     }
@@ -104,8 +110,8 @@ function createSidebarElements(){
         artistContent.appendChild(artistText)
         artistText.appendChild(artistTextH1)
         artistText.appendChild(artistTextP)
-        artistTextH1.innerHTML = 'Artist name'
-        artistTextP.innerHTML = allSongs[i].name
+        artistTextH1.innerHTML = allSongs[i].name
+        artistTextP.innerHTML = allSongs[i].artist
         musicBox.appendChild(iconPlay)
 
         iconPlay.addEventListener('click', ()=>{
@@ -202,7 +208,9 @@ function loadSong(){
     
     audioEl.src = allSongs[songIndex].source
     audioEl.setAttribute('preload', 'metadata')
+    audioEl.volume = currentVolume
     songTittle.innerHTML = allSongs[songIndex].name
+    artistName.innerHTML = allSongs[songIndex].artist
     artistiIMG.src = allSongs[songIndex].thumb
 }
 
