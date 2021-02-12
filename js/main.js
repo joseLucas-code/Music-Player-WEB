@@ -21,9 +21,8 @@ let currentTime = 0;
 let songIndex = 0;
 let isPlaying = false;
 let isMuted = false
-let audioEl = new Audio()
-playerContainer.appendChild(audioEl)
-let allSongs = [
+const audioEl = new Audio()
+const allSongs = [
     {
         name: 'C U Again',
         artist: 'Cartoon',
