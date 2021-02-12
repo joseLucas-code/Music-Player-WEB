@@ -53,6 +53,24 @@ let allSongs = [
         artist: 'If Found',
         thumb: 'img/artist5.jpg',
         source: 'songs/audio5.mp3'
+    },
+    {
+        name: 'Lose Your Self',
+        artist: 'Eminem',
+        thumb: 'img/artist6.jpg',
+        source: 'songs/audio6.mp3'
+    },
+    {
+        name: 'Such a Whore',
+        artist: 'JVLA',
+        thumb: 'img/artist7.jpg',
+        source: 'songs/audio7.mp3'
+    },
+    {
+        name: 'About Me',
+        artist: 'Koven x Roy',
+        thumb: 'img/artist8.jpg',
+        source: 'songs/audio8.mp3'
     }
 ];
 let totalSongs = allSongs.length - 1;
