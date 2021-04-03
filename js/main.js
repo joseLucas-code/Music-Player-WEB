@@ -20,30 +20,30 @@ let duration = 0;
 let currentTime = 0;
 let songIndex = 0;
 let isPlaying = false;
-let isMuted = false
+let Muted = false
 const audioEl = new Audio()
 const allSongs = [
     {
-        name: 'C U Again',
-        artist: 'Cartoon',
+        name: 'The Heart Wants What It Wants ',
+        artist: 'Selena Gomez',
         thumb: 'img/artist1.jpg',
         source: 'songs/audio1.mp3'
     },
     {
-        name: 'Howling',
-        artist: 'Cartoon',
+        name: 'Past Life',
+        artist: 'Trevor Daniel & Selena Gomez',
         thumb: 'img/artist2.jpg',
         source: 'songs/audio2.mp3'
     },
     {
-        name: 'On & On',
-        artist: 'Cartoon',
+        name: 'Paradise',
+        artist: 'Coldplay',
         thumb: 'img/artist3.jpg',
         source: 'songs/audio3.mp3'
     },
     {
-        name: 'Filthy Rich (Sweater Remix)',
-        artist: 'Evalyn',
+        name: 'lie to me',
+        artist: 'Tate McRae & Ali Gatie',
         thumb: 'img/artist4.jpg',
         source: 'songs/audio4.mp3'
     },
@@ -76,14 +76,14 @@ let totalSongs = allSongs.length - 1;
 
 
 muteBTN.addEventListener('click', ()=>{
-    if(isMuted === false){
-        audioEl.muted = true
-        muteBTN.style.backgroundColor = '#430000';
-        isMuted = true
-    }else{
+    if(Muted){
         audioEl.muted = false
         muteBTN.style.backgroundColor = '#030D13';
-        isMuted = false
+        Muted = false
+    }else{
+        audioEl.muted = true
+        muteBTN.style.backgroundColor = '#430000';
+        Muted = true
     }
 })
 
@@ -100,6 +100,14 @@ volumeRange.addEventListener('input', ()=>{
 
     audioEl.volume = (volumeRange.value / 100)
     volumeSpan.innerHTML = `${volumeRange.value}%`
+})
+
+openMusicList.addEventListener('click', ()=>{
+    sidebarMusic.classList.add('OpenSidebar')
+})
+
+closeMusicList.addEventListener('click', ()=>{
+    sidebarMusic.classList.remove('OpenSidebar')
 })
 
 function createSidebarElements(){
@@ -147,15 +155,6 @@ function createSidebarElements(){
 
 }
 
-openMusicList.addEventListener('click', ()=>{
-    sidebarMusic.classList.add('OpenSidebar')
-})
-
-closeMusicList.addEventListener('click', ()=>{
-    sidebarMusic.classList.remove('OpenSidebar')
-})
-
-
 songDuration.addEventListener('input', ()=>{
     audioEl.currentTime = songDuration.value;
 })
@@ -183,7 +182,7 @@ prevBTN.addEventListener('click', ()=>{
 })
 
 playBTN.addEventListener('click', ()=>{
-    if(isPlaying === true){
+    if(isPlaying){
         pauseSong()
     }else{
         playSong()
@@ -224,19 +223,13 @@ function loadSong(){
     let currentVolume = (volumeRange.value / 100)
     
     audioEl.src = allSongs[songIndex].source
-    audioEl.setAttribute('preload', 'metadata')
     audioEl.volume = currentVolume
     songTittle.innerHTML = allSongs[songIndex].name
     artistName.innerHTML = allSongs[songIndex].artist
     artistiIMG.src = allSongs[songIndex].thumb
 }
 
-function changeActiveBox(){
-    let musicBoxSingle = document.querySelector('.music-box.activeBox');
-    musicBoxSingle.classList.remove('activeBox')
 
-    musicBoxContainer.children[songIndex].classList.add('activeBox')
-}
 
 function init(){
     loadSong()
