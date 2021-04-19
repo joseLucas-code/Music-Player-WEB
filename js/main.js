@@ -24,52 +24,40 @@ let Muted = false
 const audioEl = new Audio()
 const allSongs = [
     {
-        name: 'The Heart Wants What It Wants ',
-        artist: 'Selena Gomez',
-        thumb: 'img/artist1.jpg',
-        source: 'songs/audio1.mp3'
-    },
-    {
-        name: 'Past Life',
-        artist: 'Trevor Daniel & Selena Gomez',
-        thumb: 'img/artist2.jpg',
-        source: 'songs/audio2.mp3'
-    },
-    {
         name: 'Paradise',
         artist: 'Coldplay',
         thumb: 'img/artist3.jpg',
-        source: 'songs/audio3.mp3'
+        source: 'songs/audio1.mp3'
     },
     {
         name: 'lie to me',
         artist: 'Tate McRae & Ali Gatie',
         thumb: 'img/artist4.jpg',
-        source: 'songs/audio4.mp3'
+        source: 'songs/audio2.mp3'
     },
     {
         name: 'Dead of Night',
         artist: 'If Found',
         thumb: 'img/artist5.jpg',
-        source: 'songs/audio5.mp3'
+        source: 'songs/audio3.mp3'
     },
     {
         name: 'Lose Your Self',
         artist: 'Eminem',
         thumb: 'img/artist6.jpg',
-        source: 'songs/audio6.mp3'
+        source: 'songs/audio4.mp3'
     },
     {
         name: 'Such a Whore',
         artist: 'JVLA',
         thumb: 'img/artist7.jpg',
-        source: 'songs/audio7.mp3'
+        source: 'songs/audio5.mp3'
     },
     {
         name: 'About Me',
         artist: 'Koven x Roy',
         thumb: 'img/artist8.jpg',
-        source: 'songs/audio8.mp3'
+        source: 'songs/audio6.mp3'
     }
 ];
 let totalSongs = allSongs.length - 1;
