@@ -127,7 +127,7 @@ function createSidebarElements(){
         musicBox.appendChild(iconPlay)
 
         iconPlay.addEventListener('click', ()=>{
-            i = parseInt(i)
+            
             songIndex = i
 
             loadSong()
@@ -135,12 +135,10 @@ function createSidebarElements(){
 
             changeActiveBox()
         })
-
-        
+    
     }
-
+    
     musicBoxContainer.children[0].classList.add('activeBox')
-
 }
 
 songDuration.addEventListener('input', ()=>{
@@ -217,7 +215,14 @@ function loadSong(){
     artistiIMG.src = allSongs[songIndex].thumb
 }
 
+function changeActiveBox(){
 
+    for(let n in allSongs){
+        musicBoxContainer.children[n].classList.remove('activeBox')
+        musicBoxContainer.children[songIndex].classList.add('activeBox')
+    }
+    
+}
 
 function init(){
     loadSong()
