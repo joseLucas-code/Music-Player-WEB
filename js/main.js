@@ -30,7 +30,7 @@ const allSongs = [
         source: 'songs/audio1.mp3'
     },
     {
-        name: 'lie to me',
+        name: 'Lie to Me',
         artist: 'Tate McRae & Ali Gatie',
         thumb: 'img/artist4.jpg',
         source: 'songs/audio2.mp3'
